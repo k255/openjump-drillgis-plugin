@@ -49,7 +49,7 @@ select columns[2] as city, ST_Point(columns[4], columns[3])
             ST_GeomFromText(
                 'POLYGON((-121.95 37.28, -121.94 37.35, -121.84 37.35, -121.84 37.28, -121.95 37.28))'
                 )
-            );
+            )
 ```
 
 which shows points from our dataset limited to region near San Jose as shown here:
