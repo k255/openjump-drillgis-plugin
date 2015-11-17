@@ -1,0 +1,92 @@
+
+<project name="DrillGISPlugin" default="compile" basedir=".">
+
+    <!--************************************************************************
+    ****************************************************************************
+    **                                 PROPERTIES                             **
+    ****************************************************************************
+    *************************************************************************-->
+
+    <property name="DrillGISPlugIn" value="DrillGISPlugIn"/>
+
+    <!-- PROPERTIES : MAIN ARCHITECTURE -->
+    <property name="src"     value="src" />
+    <property name="bin"     value="bin" />
+    <property name="lib"     value="lib" />
+    <property name="build"   value="build" />
+    <property name="dist"    value="dist" />
+    <property name="javadoc" value="javadoc" />
+    <property name="res"     value="resources" />
+
+    <property name="version" value="1.3.0" />
+
+    <!-- =================================================================== -->
+    <!-- Defines the classpath used for compilation and test.                -->
+    <!-- =================================================================== -->
+    <path id="classpath">
+        <fileset dir="${lib}">
+            <include name="**/*.jar"/>
+        </fileset>
+    </path>
+
+    <target name="clean" id="clean">
+        <delete dir="${build}"/>
+        <delete dir="${dist}"/>
+    </target>
+
+    <!-- =================================================================== -->
+    <!-- compile DrillGISPlugIn                                               -->
+    <!-- =================================================================== -->
+    <target name="compile" id="compile" depends="clean">
+        <mkdir dir="${build}"/>
+        <javac destdir="${build}"
+               debug="true"
+               deprecation="false"
+               nowarn="true"
+               source="1.5"
+               target="1.5">
+            <src path="${src}"/>
+            <classpath refid="classpath"/>
+            <include name="**/*.java"/>
+            <include name="**/*.java"/>
+        </javac>
+    </target>
+
+    <!-- =================================================================== -->
+    <!-- jar DrillGISPlugIn                                                   -->
+    <!-- =================================================================== -->
+    <target name="jar" id="jar" depends="compile">
+        <mkdir dir="${dist}"/>
+        <jar basedir="${build}" jarfile="${dist}/${DrillGISPlugIn}-${version}.jar">
+            <include name="org/**/*"/>
+            <include name="org/**/*.properties"/>
+        </jar>
+    </target>
+
+    <!-- =================================================================== -->
+    <!-- javadoc DrillGISPlugIn                                               -->
+    <!-- =================================================================== -->
+    <target name="javadoc" depends="compile">
+        <mkdir dir="${javadoc}"/>
+        <javadoc destdir="${javadoc}" use="true">
+            <classpath refid="classpath"/>
+            <packageset dir="${src}/main/java">
+                <include name="org/**"/>
+            </packageset>
+        </javadoc>
+    </target>
+
+    <!-- =================================================================== -->
+    <!-- release DrillGISPlugIn source and documentation                          -->
+    <!-- =================================================================== -->
+    <target name="release-drillgis-plugin" id="release-drillgis-plugin" depends="jar, javadoc">
+        <zip basedir="." zipfile="${dist}/${DrillGISPlugIn}-${version}.zip">
+             <include name="src/main/java/**"/>
+             <include name="src/main/resources/**"/>
+             <include name="javadoc/**"/>
+             <include name="${dist}/${DrillGISPlugIn}-${version}.jar"/>
+             <include name="build.xml"/>
+        </zip>
+    </target>
+
+</project>
