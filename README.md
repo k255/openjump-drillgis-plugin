@@ -1,4 +1,4 @@
-# openjump-drillgis-pluigin
+# openjump-drillgis-plugin
 
 openjump-drillgis-pluigin is an experimental extension for [OpenJump GIS] that allows execution of spatial queries against Apache Drill with DrillGis contrib module.
 
