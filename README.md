@@ -19,15 +19,15 @@ then copy target/DrillGISPlugin-1.3.0.jar to OpenJump ext directory. Also ensure
 
 Start Apache Zookeeper:
 ```sh
-bin/zkServer.sh start
+zookeeper/bin/zkServer.sh start
 ```
 Start Apache Drill (with gis contrib module available as [drill-gis plugin] or included in [Apache Drill master branch]):
 ```sh
-bin/drillbit.sh start
+apache-drill-1.3.0/bin/drillbit.sh start
 ```
 Start OpenJump
 ```sh
-$ bin/oj_linux.sh
+OpenJump/bin/oj_linux.sh
 ```
 
 ## Usage
